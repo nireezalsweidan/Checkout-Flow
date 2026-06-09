@@ -151,7 +151,9 @@ input, button {
   font-family: var(--font-family);
 }
 
-/* MATERIAL SYMBOLS */
+/* =========================================================
+   MATERIAL SYMBOLS
+   ========================================================= */
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   font-size: 24px;
@@ -159,7 +161,9 @@ input, button {
   vertical-align: middle;
 }
 
-/* UTILITY CLASSES */
+/* =========================================================
+   UTILITY CLASSES
+   ========================================================= */
 .hidden { display: none !important; }
 
 .icon-primary { color: var(--color-primary); }
@@ -270,21 +274,33 @@ main.main-content {
   justify-content: space-between;
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--color-outline-variant);
+  overflow: hidden;
 }
 .stepper-divider {
   height: 2px;
   flex: 1;
-  margin: 0 var(--space-md);
+  min-width: 4px;
+  margin: 0 var(--space-xs);
   background-color: var(--color-outline-variant);
 }
 .step-tab {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   padding-bottom: var(--space-sm);
   margin-bottom: -10px;
   border-bottom: 2px solid transparent;
   transition: var(--transition-std);
+  flex-shrink: 0;
+}
+/* Hide step labels on small screens — icons only */
+@media (max-width: 480px) {
+  .step-tab-label {
+    display: none;
+  }
+  .stepper-divider {
+    margin: 0 2px;
+  }
 }
 .step-tab-active {
   border-bottom-color: var(--color-primary-container);
@@ -295,6 +311,19 @@ main.main-content {
   font-size: var(--fs-label-md);
   line-height: var(--lh-label-md);
   font-weight: var(--fw-label-md);
+  white-space: nowrap;
+}
+/* Shrink label text between 481px and 599px */
+@media (min-width: 481px) and (max-width: 599px) {
+  .step-tab-label {
+    font-size: 11px;
+  }
+  .step-tab {
+    gap: 4px;
+  }
+  .stepper-divider {
+    margin: 0 4px;
+  }
 }
 .step-tab-label-active { color: var(--color-primary-container); font-weight: 700; }
 .step-tab-label-muted  { color: var(--color-on-surface-variant); }
@@ -494,8 +523,8 @@ main.main-content {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
+  background-color: var(--color-primary-fixed);
+  color: var(--color-on-primary-container);
   padding: var(--space-md) var(--space-xl);
   border-radius: var(--radius-md);
   font-size: var(--fs-label-md);
@@ -504,7 +533,10 @@ main.main-content {
   cursor: pointer;
   transition: all 400ms;
 }
-.btn-continue-shopping:hover { opacity: 0.9; }
+.btn-continue-shopping:hover {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
 
 /* Step action rows */
 .step-actions {
