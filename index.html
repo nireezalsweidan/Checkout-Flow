@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>FinSecure Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <!-- TopAppBar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">FinSecure Checkout</div>
+        <nav class="topbar-nav">
+          <a href="#">Help</a>
+          <a href="#">Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Stepper -->
+      <div id="checkoutStepperWrapper" class="stepper-wrapper">
+        <div id="checkoutStepper" class="stepper">
+          <div class="step-tab step-tab-active" id="step-tab-0">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="step-tab-label step-tab-label-active">Contact</span>
+          </div>
+          <div class="stepper-divider"></div>
+          <div class="step-tab" id="step-tab-1">
+            <span class="material-symbols-outlined step-tab-icon-muted" data-icon="local_shipping">local_shipping</span>
+            <span class="step-tab-label step-tab-label-muted">Shipping</span>
+          </div>
+          <div class="stepper-divider"></div>
+          <div class="step-tab" id="step-tab-2">
+            <span class="material-symbols-outlined step-tab-icon-muted" data-icon="payments">payments</span>
+            <span class="step-tab-label step-tab-label-muted">Payment</span>
+          </div>
+          <div class="stepper-divider"></div>
+          <div class="step-tab" id="step-tab-3">
+            <span class="material-symbols-outlined step-tab-icon-muted" data-icon="check_circle">check_circle</span>
+            <span class="step-tab-label step-tab-label-muted">Success</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form + Order Summary -->
+      <div id="checkoutGrid" class="checkout-grid">
+
+        <!-- Form Content (Left Column) -->
+        <div id="checkoutFormSection" class="checkout-form-section">
+          <div id="stepsContainer">
+
+            <!-- Step 1: Contact Information -->
+            <section class="step-content active" id="step-0">
+              <div class="card">
+                <h2 class="card-title">
+                  <span class="material-symbols-outlined icon-primary" data-icon="contact_mail">contact_mail</span>
+                  Contact Information
+                </h2>
+                <div class="grid-2col">
+                  <div class="field-group">
+                    <label class="field-label" for="firstName">First Name</label>
+                    <input class="field-input" id="firstName" placeholder="John" required type="text" />
+                    <p class="error-message">First name is required.</p>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label" for="lastName">Last Name</label>
+                    <input class="field-input" id="lastName" placeholder="Doe" required type="text" />
+                    <p class="error-message">Last name is required.</p>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label" for="email">Email Address</label>
+                    <input class="field-input" id="email" placeholder="john@example.com" required type="email" />
+                    <p class="error-message">Enter a valid email address.</p>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label" for="phone">Phone Number</label>
+                    <input class="field-input" id="phone" placeholder="+1 123 456 7890" required type="tel" />
+                    <p class="error-message">Enter a valid phone number (10-15 digits starting with +).</p>
+                  </div>
+                </div>
+              </div>
+              <div class="step-actions step-actions-end">
+                <button class="btn btn-primary" onclick="nextStep(0)">Continue to Shipping</button>
+              </div>
+            </section>
+
+            <!-- Step 2: Shipping Address -->
+            <section class="step-content" id="step-1">
+              <div class="card">
+                <h2 class="card-title">
+                  <span class="material-symbols-outlined icon-primary" data-icon="local_shipping">local_shipping</span>
+                  Shipping Address
+                </h2>
+                <div class="grid-shipping">
+                  <div class="field-group col-4">
+                    <label class="field-label" for="address">Street Address</label>
+                    <input class="field-input" id="address" placeholder="123 Financial Way" required type="text" />
+                    <p class="error-message">Street address is required.</p>
+                  </div>
+                  <div class="field-group col-2">
+                    <label class="field-label" for="apt">Apt/Suite (Optional)</label>
+                    <input class="field-input" id="apt" placeholder="Suite 400" type="text" />
+                  </div>
+                  <div class="field-group col-2">
+                    <label class="field-label" for="city">City</label>
+                    <input class="field-input" id="city" placeholder="New York" required type="text" />
+                    <p class="error-message">City is required.</p>
+                  </div>
+                  <div class="field-group col-2">
+                    <label class="field-label" for="state">State / Province</label>
+                    <input class="field-input" id="state" placeholder="New York" required type="text" />
+                    <p class="error-message">State is required.</p>
+                  </div>
+                  <div class="field-group col-2">
+                    <label class="field-label" for="zip">ZIP Code</label>
+                    <input class="field-input" id="zip" placeholder="10001" required type="text" />
+                    <p class="error-message">ZIP code is required.</p>
+                  </div>
+                  <div class="field-group col-6">
+                    <label class="field-label" for="country">Country</label>
+                    <input class="field-input" id="country" placeholder="United States" required type="text" />
+                    <p class="error-message">Country is required.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="step-actions step-actions-between">
+                <button class="btn btn-secondary" onclick="showStep(0)">Back</button>
+                <button class="btn btn-primary" onclick="nextStep(1)">Continue to Payment</button>
+              </div>
+            </section>
+
+            <!-- Step 3: Payment Details -->
+            <section class="step-content" id="step-2">
+              <div class="card">
+                <h2 class="card-title">
+                  <span class="material-symbols-outlined icon-primary" data-icon="security">security</span>
+                  Payment Details
+                </h2>
+                <div class="payment-section">
+                  <div class="payment-methods">
+                    <label class="payment-option-label payment-option-active">
+                      <input checked class="payment-radio" name="payment_method" type="radio" value="Credit Card" />
+                      <span class="label-md">Credit Card</span>
+                    </label>
+                    <label class="payment-option-label">
+                      <input class="payment-radio" name="payment_method" type="radio" value="Cash on Delivery" />
+                      <span class="label-md">Cash on Delivery</span>
+                    </label>
+                  </div>
+
+                  <div class="card-fields" id="cardSection">
+                    <div class="field-group">
+                      <label class="field-label" for="cardholder">Cardholder Name</label>
+                      <input class="field-input" id="cardholder" placeholder="Enter full name" type="text" />
+                      <p class="error-message">Cardholder name is required.</p>
+                    </div>
+                    <div class="field-group">
+                      <label class="field-label" for="cardNumber">Card Number</label>
+                      <div class="input-icon-wrapper">
+                        <input class="field-input field-input-icon" id="cardNumber" maxlength="19" placeholder="0000 0000 0000 0000" type="text" />
+                        <span class="material-symbols-outlined input-icon" data-icon="credit_card">credit_card</span>
+                      </div>
+                      <p class="error-message">Enter a valid 16-digit card number.</p>
+                    </div>
+                    <div class="grid-2col">
+                      <div class="field-group">
+                        <label class="field-label" for="expiry">Expiry Date (MM/YY)</label>
+                        <input class="field-input" id="expiry" maxlength="5" placeholder="MM/YY" type="text" />
+                        <p class="error-message" id="expiryError">Enter a valid future expiry (MM/YY).</p>
+                      </div>
+                      <div class="field-group">
+                        <label class="field-label" for="cvv">CVV</label>
+                        <input class="field-input" id="cvv" maxlength="4" placeholder="•••" type="password" />
+                        <p class="error-message">Enter a valid 3-4 digit CVV.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-pay" id="submitPayment">
+                    <span id="paymentBtnText">Pay $517.31</span>
+                  </button>
+
+                  <div class="payment-footer">
+                    <div class="card-logos">
+                      <img alt="Visa" class="card-logo card-logo-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD87OUoyKMADN_7LUNBKYvq-f3sD7XRInFcJA_Y4ZeZlHUlzEBX4JPGvTWM_JarDVyu6MBWkt6zW9WJuwfq-YruOJxSan7ccqJtausedZ0UEPZQ5KSvH9wVpUuo6wK9likj9HyUyEStwFkQL4o61Gdq_2RofGE7RTcY2UZRtszrD1vwX-Dh7j-BRabhqNy2a3fcNCVcqdIIdkPJuKpfY_zikmlBtalG7uIX5m5F3ptVDgw6vZWp2fTSDXNFA5DKhYV3O303D6zFVI0" />
+                      <img alt="Mastercard" class="card-logo card-logo-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ7j0BD3aR8Hxt53SFm9-lVtK0Ah1kBICf9y4VYIoE17c1rI2g7aICg4ErPnfB8yd8rx5eLLc2tTzTTfnIATr6eFSXtgd8CTOunLzqHmHqvUtT6F5PTZO2fDJyKxpHAIGTWy0QLFRBjyPRaDWPVeFSspChyAhPHThgUTusLhywHuoBse1JpLXKHkmUl4GC2vSQwarnEVPglIcgIgY_0BU5ESp7b0m3j1HMIRZ0uggodD7IlhmgnDgSOO-BRsD0Ebrh8ahz4cLPeWo" />
+                      <img alt="AMEX" class="card-logo card-logo-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK1f4bzxiDfIlktUdZkn6ELnIT_U6GwyjxOLqwLy03Q32paQ8pW3IFRVNIhkH21iUFuCbE2q2dn-nd7vqW_wzaQOeUzhV_qPj1Nh6FPoK9jg23o12dWC8sgkc0tMxaFqHFeCELTbMDoSOVd1Unfzysp3VwOqu7XXsnTF6jPyWXYOX9IIYetHvhpoVC6Ma2GHfvsB_4_FNIHqmQ4DZEAkUt0k2wFbg28TJ1R_0sMkk-pgHrhidO9l61h6McY7q6ictr5QFT5Co49sM" />
+                    </div>
+                    <div class="ssl-badge">
+                      <span class="material-symbols-outlined ssl-icon" data-icon="verified_user">verified_user</span>
+                      256-bit Secure SSL Encryption
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="step-actions step-actions-start">
+                <button class="btn btn-secondary" onclick="showStep(1)">Back</button>
+              </div>
+            </section>
+
+          </div>
+
+          <!-- Trust Badges -->
+          <div id="trustBadges" class="trust-badges">
+            <div class="trust-badge">
+              <div class="trust-badge-icon-wrap">
+                <span class="material-symbols-outlined icon-primary" data-icon="published_with_changes">published_with_changes</span>
+              </div>
+              <div>
+                <p class="trust-badge-title">Auto-Update</p>
+                <p class="trust-badge-desc">We notify your bank of card changes automatically.</p>
+              </div>
+            </div>
+            <div class="trust-badge">
+              <div class="trust-badge-icon-wrap">
+                <span class="material-symbols-outlined icon-primary" data-icon="undo">undo</span>
+              </div>
+              <div>
+                <p class="trust-badge-title">30-Day Refund</p>
+                <p class="trust-badge-desc">Hassle-free money back guarantee.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary (Right Column) -->
+        <aside id="orderSummaryAside" class="order-summary-aside">
+          <div class="order-summary-card">
+            <div class="order-summary-header">
+              <h2 class="order-summary-title">Order Summary</h2>
+              <p class="order-summary-subtitle">Review your items</p>
+            </div>
+            <div class="order-items">
+              <div class="order-item">
+                <div class="order-item-img-wrap">
+                  <img class="order-item-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDulsGQEwKM4lX1BmAFY75cXkG1q2f6MjJFMEYVHPhnAJa1XAIITiBREtRkJpXhVBy89uHUC-p8HA8rIu9nC0F5ZJjValxw8Lt-TmKGb54Fkp8OkinhhQVdsw9YODIyZNKtUFoTaljtUaEk79_VI5R1LRFZ2eFsELOf5XErJzdVF1A2-kPk-n09YVtknxFsx5IE6qI-zGy_Rj4kTaoTbfFSudPcOlagwZlqzZQZ64L4b7ipU1F1H5uWq9lK83-C_qVYzeFiCgSmW9E" />
+                </div>
+                <div class="order-item-details">
+                  <p class="order-item-name">Pro Performance Sneakers</p>
+                  <p class="order-item-variant">Size: 10 | Color: Slate Blue</p>
+                </div>
+                <p class="order-item-price">$129.99</p>
+              </div>
+              <div class="order-item">
+                <div class="order-item-img-wrap">
+                  <img class="order-item-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSkEvB22VvZqgWMWzDpDJ3diSLQimlD-AEIcUYp-b4pdiOQtraHl3wP2lvNuxSGlV67wJ9ZFIukOvP5eXfSEgu_ZUnpn5QvyJdqjnVG0KjALFGkMgXLtgh2JSaNzECu5Ea2NQ57Clu6eU9dWBMV4zD-XxzZ39qZyS7XYSRyqJY5hknXW40cZgkyc9EEZKs8dfII0qAle3o7TbcSINv_0VIha5ZdpSDcC2PkXZcxaEXmbBm9tPahZU8F2u7-rouxRUtOD9v9nhegQU" />
+                </div>
+                <div class="order-item-details">
+                  <p class="order-item-name">Elite Smartwatch Series 5</p>
+                  <p class="order-item-variant">Model: Platinum</p>
+                </div>
+                <p class="order-item-price">$349.00</p>
+              </div>
+            </div>
+            <div class="order-totals">
+              <div class="order-total-row">
+                <span class="order-total-label">Subtotal</span>
+                <span>$478.99</span>
+              </div>
+              <div class="order-total-row">
+                <span class="order-total-label">Shipping</span>
+                <span class="order-total-free">FREE</span>
+              </div>
+              <div class="order-total-row">
+                <span class="order-total-label">Tax</span>
+                <span>$38.32</span>
+              </div>
+              <div class="order-total-row order-total-row-final">
+                <span>Total</span>
+                <span>$517.31</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Success View -->
+      <div class="success-view hidden" id="successView">
+        <div class="success-hero">
+          <div class="success-checkmark success-checkmark-animation">
+            <span class="material-symbols-outlined success-check-icon" style="font-variation-settings: 'FILL' 1;" data-icon="check_circle">check_circle</span>
+          </div>
+          <h1 class="success-title">Order Confirmed</h1>
+          <p class="success-subtitle">
+            Thank you for your purchase, <span class="success-name" id="successUserName">John Doe</span>. We've sent a confirmation email to you.
+          </p>
+          <div class="success-order-badge">Order #FS-88219</div>
+        </div>
+
+        <div class="success-details-wrap">
+          <div class="card">
+            <h3 class="card-section-title">Order Details</h3>
+            <div class="success-items">
+              <div class="success-item-row">
+                <div>
+                  <span class="label-md">Pro Performance Sneakers</span>
+                  <span class="body-sm text-muted">Qty: 1 × $129.99</span>
+                </div>
+                <span class="label-md">$129.99</span>
+              </div>
+              <div class="success-item-row">
+                <div>
+                  <span class="label-md">Elite Smartwatch Series 5</span>
+                  <span class="body-sm text-muted">Qty: 1 × $349.00</span>
+                </div>
+                <span class="label-md">$349.00</span>
+              </div>
+              <div class="success-item-row success-item-row-border">
+                <span class="body-md text-muted">Shipping</span>
+                <span class="label-md text-primary font-bold">FREE</span>
+              </div>
+              <div class="success-item-row">
+                <span class="body-md text-muted">Tax</span>
+                <span class="label-md">$38.32</span>
+              </div>
+            </div>
+            <div class="success-contacts">
+              <div class="success-contact-grid">
+                <div>
+                  <p class="label-md mb-xs">Contact Details:</p>
+                  <p class="body-sm text-muted success-contact-text">
+                    <span class="font-medium" id="successContactName">John Doe</span><br />
+                    <span id="successContactEmail">john@example.com</span><br />
+                    <span id="successContactPhone">+1 123 456 7890</span>
+                  </p>
+                  <div class="mt-md">
+                    <span class="body-sm text-muted" id="displayPaymentMethod">Payment Method: Credit Card</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="label-md mb-xs">Shipping Address:</p>
+                  <p class="body-sm text-muted success-contact-text" id="successAddress">
+                    123 Financial Way, Suite 400<br />New York, New York 10001<br />United States
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="success-total-paid">
+              <span class="headline-sm">Total Payment</span>
+              <span class="headline-md text-primary">$517.31</span>
+            </div>
+          </div>
+
+          <div class="success-actions">
+            <button class="btn btn-continue-shopping">
+              Continue Shopping
+              <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+            <div class="delivery-card">
+              <span class="material-symbols-outlined icon-primary" data-icon="local_shipping">local_shipping</span>
+              <div>
+                <p class="label-md">Estimated Delivery</p>
+                <p class="body-sm text-muted">July 10, 2026</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="success-banner">
+          <img alt="Secure transactions" class="success-banner-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7yAmPQN1zt1jnnd2gyXfywVDBoMFyxzBvcXwWpFdbDrK_Or2F8go_Y4i4QKQybUOOhzvM8_31rUPJvXoYUbc0_sWZg8PHqAvSw_-v24y8mtnGzFZKxdirXCFQ_lTvSw0-OWKU5Vl8yjAUmGq51PomqC96V6LomSs_5I0HJThk-3gUITigVb96rP01ygP7ofLzmoPbrBHBYqFzX8sMO26j41G69kD3cmlHPVyzJ3Pci6FUloSJJ8xm8knPig0u9MCBC-aycRSxWOo" />
+          <div class="success-banner-overlay">
+            <p class="headline-sm text-white">Your data is safe with us.</p>
+            <p class="body-sm text-white-80">Every transaction is protected by bank-grade encryption.</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">FinSecure Inc.</div>
+        <p class="footer-copy">© 2024 FinSecure Inc. All transactions are encrypted and secure. PCI-DSS Level 1 Compliant Provider.</p>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Security Guarantee</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
